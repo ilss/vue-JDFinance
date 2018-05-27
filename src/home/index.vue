@@ -8,6 +8,7 @@
         <Product/>
         <Life/>
         <Footer/>
+        <Navbar/>
     </div>
 </template>
 
@@ -20,6 +21,7 @@ import Money from './money'
 import Product from './product'
 import Life from './life'
 import Footer from '../public/footer'
+import Navbar from '../public/navbar'
 export default {
     components: {
         Heador,
@@ -30,6 +32,7 @@ export default {
         Product,
         Life,
         Footer,
+        Navbar,
     },
 }
 </script>
