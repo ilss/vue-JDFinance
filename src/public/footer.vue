@@ -31,6 +31,12 @@ import Panel from '../components/panel'
 export default {
   components: {
     Panel,
+  },
+  props: {
+    cname: {
+      type: String,
+      default: ''
+    }
   }
 }
 </script>
