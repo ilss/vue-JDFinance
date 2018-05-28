@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -36,8 +37,8 @@ module.exports = {
             camelCase: true
           },
           extractCSS: true,
-          loaders: false ? {
-            css: ExtractTextPlugin.extract({ use: 'css-loader!px2rem-loader?remUnit=40&remPrecision=8', fallback: 'vue-style-loader' }),
+          loaders: process.env.NODE_ENV === 'production' ? {
+            css: ExtractTextPlugin.extract({ use: 'css-loader?minimize!px2rem-loader?remUnit=40&remPrecision=8', fallback: 'vue-style-loader' }),
             scss: ExtractTextPlugin.extract({ use: 'css-loader!px2rem-loader?remUnit=40&remPrecision=8!sass-loader', fallback: 'vue-style-loader' })
           } : {
               css: 'vue-style-loader!css-loader!px2rem-loader?remUnit=40&remPrecision=8',
@@ -46,7 +47,7 @@ module.exports = {
         }
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
